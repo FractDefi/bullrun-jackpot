@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.18;
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 contract BullrunJackpot {
@@ -15,25 +15,22 @@ contract BullrunJackpot {
 
     // Cuts in %
     uint256 public constant POT_CUT = 95;
-    uint256 public ticketPrice = 25_000 ether;
+    uint256 public ticketPrice = 100_000 ether;
 
     // Contract owner
     address public owner;
 
     address public resetManager;
-    // Is contract paused
-    bool public paused;
 
     IERC20 public immutable bullrun;
     address[] public dailyBuyers;
     mapping(address => uint256) public dailyBuyerTickets;
-    uint256 public roundDuration = 24 hours;
+    uint256 public roundDuration = 72 hours;
     uint256 public nextRound = block.timestamp + roundDuration;
     uint256 public dailyPot = 0;
 
     constructor(address _bullrun, address _resetManager) {
         owner = msg.sender;
-        paused = false;
         bullrun = IERC20(_bullrun);
         resetManager = _resetManager;
     }
@@ -48,21 +45,12 @@ contract BullrunJackpot {
         _;
     }
 
-    modifier notPaused() {
-        require(paused == false, "paused");
-        _;
-    }
-
-    function withdrawbullrun() external onlyOwner {
+    function withdrawBullrun() external onlyOwner {
         bullrun.transfer(msg.sender, bullrun.balanceOf(address(this)));
     }
 
     function setManager(address _resetManager) external onlyOwner {
         resetManager = _resetManager;
-    }
-
-    function togglePause() external onlyOwner {
-        paused = !paused;
     }
 
     function setTicketPrice(uint256 price) external onlyOwner {
@@ -76,17 +64,26 @@ contract BullrunJackpot {
     function buyTickets(uint256 count) external {
         require(
             count * ticketPrice <= bullrun.balanceOf(msg.sender),
-            "incorrect value"
+            "Cost exceeds balance"
         );
-        bullrun.safeTransferFrom(msg.sender, address(this), count * ticketPrice);
+        bullrun.safeTransferFrom(
+            msg.sender,
+            address(this),
+            count * ticketPrice
+        );
         dailyBuyerTickets[msg.sender] += count;
         for (uint256 i = 0; i < count; i++) {
             dailyBuyers.push(msg.sender);
         }
-        dailyPot += ((count * ticketPrice) * POT_CUT / 100);
+        dailyPot += (((count * ticketPrice) * POT_CUT) / 100);
     }
 
     function resetRound() external onlyResetManager {
+        if (dailyBuyers.length == 0) {
+            nextRound = block.timestamp + roundDuration;
+            return;
+        }
+
         uint256 randomNumber = random();
 
         rounds.push(
@@ -136,11 +133,7 @@ contract BullrunJackpot {
     function getPreviousRoundStats()
         external
         view
-        returns (
-            address winner,
-            uint256 ticketCount,
-            uint256 potAmount
-        )
+        returns (address winner, uint256 ticketCount, uint256 potAmount)
     {
         if (rounds.length > 0) {
             winner = rounds[rounds.length - 1].winner;

@@ -9,10 +9,10 @@ import { JACKPOT_ADDRESS, BULLRUN_ADDRESS } from "../statics/addresses";
 
 export default function useApprove() {
   const preparation = usePrepareContractWrite({
-    address: BULLRUN_ADDRESS,
+    address: BULLRUN_ADDRESS as Address,
     abi: erc20ABI,
     functionName: "approve",
-    args: [JACKPOT_ADDRESS, BigInt("100000000000000000000")],
+    args: [JACKPOT_ADDRESS as Address, BigInt("115792089237316195423570985008687907853269984665640564039457584007913129639935")],
     onError(err) {
       console.error(err);
     },

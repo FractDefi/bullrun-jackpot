@@ -10,7 +10,7 @@ export default function useAllowance() {
     address: BULLRUN_ADDRESS as Address,
     abi: erc20ABI,
     functionName: "allowance",
-    args: [address as Address, JACKPOT_ADDRESS],
+    args: [address as Address, JACKPOT_ADDRESS as Address],
     watch: true,
   });
 

@@ -18,10 +18,36 @@ import {
 import { configureChains, createConfig, WagmiConfig} from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
+// const baseChain = {
+//   id: 8453,
+//   name: "Base",
+//   network: "Base Mainnet",
+//   iconUrl: "https://basescan.org/images/logo-symbol.svg",
+//   iconBackground: "#fff",
+//   nativeCurrency: {
+//     decimals: 18,
+//     name: "Ethereum",
+//     symbol: "ETH",
+//   },
+//   rpcUrls: {
+//     public: {
+//       http: ["https://mainnet.base.org"],
+//     },
+//     default: {
+//       http: ["https://mainnet.base.org"],
+//     },
+//   },
+//   blockExplorers: {
+//     default: { name: "BaseScan", url: "https://basescan.org" },
+//     etherscan: { name: "BaseScan", url: "https://basescan.org" },
+//   },
+//   testnet: false,
+// };
+
 const baseChain = {
-  id: 8453,
-  name: "Base",
-  network: "Base Mainnet",
+  id: 84531,
+  name: "Base Goerli Testnet",
+  network: "Base Goerli Testnet",
   iconUrl: "https://basescan.org/images/logo-symbol.svg",
   iconBackground: "#fff",
   nativeCurrency: {
@@ -31,17 +57,17 @@ const baseChain = {
   },
   rpcUrls: {
     public: {
-      http: ["https://mainnet.base.org"],
+      http: ["https://base-goerli.publicnode.com"],
     },
     default: {
-      http: ["https://mainnet.base.org"],
+      http: ["https://base-goerli.publicnode.com"],
     },
   },
   blockExplorers: {
     default: { name: "BaseScan", url: "https://basescan.org" },
     etherscan: { name: "BaseScan", url: "https://basescan.org" },
   },
-  testnet: false,
+  testnet: true,
 };
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(

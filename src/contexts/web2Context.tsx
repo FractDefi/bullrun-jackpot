@@ -8,7 +8,7 @@ import {
 } from "react";
 
 export type Web2ContextType = {
-  ogrePrice: Number;
+  bullrunPrice: Number;
 };
 
 export const Web2Context = createContext<Web2ContextType | null>(null);
@@ -40,7 +40,7 @@ export default function Web2Provider({ children }: Props) {
   return (
     <Web2Context.Provider
       value={{
-        ogrePrice: bullrunPrice,
+        bullrunPrice: bullrunPrice,
       }}
     >
       {children}

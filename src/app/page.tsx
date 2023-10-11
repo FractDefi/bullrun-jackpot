@@ -28,7 +28,7 @@ export default function Home() {
   const web2Context = useWeb2Context();
   const [value, setValue] = useState("");
 
-  const ogreBalance = useTokenBalance(BULLRUN_ADDRESS);
+  const bullrunBalance = useTokenBalance(BULLRUN_ADDRESS);
   const ticketPrice = useTicketPrice();
   const totalPaid = useTotalPaid();
   const userTickets = useUserTickets();
@@ -36,8 +36,8 @@ export default function Home() {
   const nextRound = useNextRound();
   const previousRound = usePreviousRound();
 
-  const ogreAllowance = useAllowance();
-  const approveOgreTX = useApprove();
+  const bullrunAllowance = useAllowance();
+  const approveBullrunTX = useApprove();
 
   const buyTicketTX = useStake(Number(value));
 
@@ -50,7 +50,8 @@ export default function Home() {
         className="flex flex-col items-center gap-2 md:gap-4"
       >
         <div className="">
-          <div className="animate-wiggle text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-ogre2 to-[#B07133]">
+          {/* <div className="animate-wiggle text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-bullrun2 to-[#B07133]"> */}
+          <div className="text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-bullrun2 to-[#B07133]">
             ENTER BULL MARKET LOADED
           </div>
         </div>
@@ -60,7 +61,7 @@ export default function Home() {
 
         {previousRound.ticketCount != 0 && (
           <div className="bg-white p-2 rounded-xl">
-            <div className="text-ogre text-xl w-full text-center ">
+            <div className="text-bullrun text-xl w-full text-center ">
               {`Yesterday, ${previousRound.winner.slice(
                 0,
                 5
@@ -68,7 +69,7 @@ export default function Home() {
               won {formatEther(previousRound.potAmount)} BULLRUN (
               {formatNumberToCurrency(
                 Number(formatEther(previousRound.potAmount)) *
-                  Number(web2Context?.ogrePrice)
+                  Number(web2Context?.bullrunPrice)
               )}
               ) with only {previousRound.ticketCount} tickets
             </div>
@@ -76,13 +77,13 @@ export default function Home() {
         )}
 
         <div className="w-full flex flex-col md:flex-row gap-4 justify-center">
-          <div className="w-full text-xl bg-ogre/50 backdrop-blur-sm rounded-2xl relative max-w-3xl flex flex-col justify-center items-center p-5 text-black">
+          <div className="w-full text-xl bg-bullrun/50 backdrop-blur-sm rounded-2xl relative max-w-3xl flex flex-col justify-center items-center p-5 text-black">
             <div className="flex flex-col justify-center items-center text-2xl">
               Daily Jackpot
               <div>
                 {dailyJackpot.toFixed(4)} BULLRUN (
                 {formatNumberToCurrency(
-                  Number(web2Context?.ogrePrice) * dailyJackpot
+                  Number(web2Context?.bullrunPrice) * dailyJackpot
                 )}
                 )
               </div>
@@ -94,7 +95,7 @@ export default function Home() {
                   {ticketPrice} BULLRUN (
                   {web2Context &&
                     formatNumberToCurrency(
-                      Number(web2Context.ogrePrice) * Number(ticketPrice)
+                      Number(web2Context.bullrunPrice) * Number(ticketPrice)
                     )}
                   )
                 </div>
@@ -119,33 +120,33 @@ export default function Home() {
             <div className="z-10 mt-5 mx-auto">
               <NumberInput
                 value={value}
-                balance={ogreBalance ? ogreBalance.formatted : "0"}
+                balance={bullrunBalance ? bullrunBalance.formatted : "0"}
                 setValueCallback={setValue}
                 tokenImgSrc={BULLRUN}
                 ticketPrice={ticketPrice}
                 unitPrice={
-                  web2Context && web2Context.ogrePrice
-                    ? web2Context.ogrePrice
+                  web2Context && web2Context.bullrunPrice
+                    ? web2Context.bullrunPrice
                     : 0
                 }
               />
             </div>
 
             <div className="mt-5 z-10 flex gap-10">
-              {Number(ogreAllowance) === 0 ||
-              ogreAllowance <
+              {Number(bullrunAllowance) === 0 ||
+              bullrunAllowance <
                 parseEther((Number(value) * ticketPrice).toString()) ? (
                 <button
-                  disabled={!approveOgreTX.transaction.write}
+                  disabled={!approveBullrunTX.transaction.write}
                   onClick={() => {
-                    if (approveOgreTX.transaction.write) {
+                    if (approveBullrunTX.transaction.write) {
                       setValue("");
-                      approveOgreTX.transaction.write();
+                      approveBullrunTX.transaction.write();
                     }
                   }}
-                  className="bg-neutral-700 rounded-md disabled:contrast-50 transition-transform relative flex justify-center items-center p-5 uppercase text-ogre"
+                  className="bg-neutral-700 rounded-md disabled:contrast-50 transition-transform relative flex justify-center items-center p-5 uppercase text-bullrun"
                 >
-                  {approveOgreTX.confirmation.isLoading ? (
+                  {approveBullrunTX.confirmation.isLoading ? (
                     <div className="pt-0.5 z-10 flex gap-2 items-center">
                       APPROVING...{" "}
                       <Image
@@ -164,15 +165,15 @@ export default function Home() {
                   disabled={
                     !buyTicketTX.transaction.write ||
                     !value ||
-                    (ogreBalance &&
-                      Number(value) * ticketPrice > ogreBalance.value)
+                    (bullrunBalance &&
+                      Number(value) * ticketPrice > bullrunBalance.value)
                   }
                   onClick={() => {
                     if (buyTicketTX.transaction.write) {
                       buyTicketTX.transaction.write();
                     }
                   }}
-                  className="bg-neutral-700 rounded-md  disabled:contrast-50 transition-transform relative flex justify-center items-center p-5 uppercase text-ogre"
+                  className="bg-neutral-700 rounded-md  disabled:contrast-50 transition-transform relative flex justify-center items-center p-5 uppercase text-bullrun"
                 >
                   {buyTicketTX.confirmation.isLoading ? (
                     <div className="z-10 flex gap-2 items-center">
@@ -202,13 +203,13 @@ export default function Home() {
           <div className="bg-zinc-950/30 backdrop-blur-sm rounded-2xl relative h-full p-5 text-white">
             <div className="text-xl">Rules</div>
             <ul className="pl-2 mt-2 list-disc">
-              <li>Everyday, a new Jackpot and a random new winner!</li>
+              <li>Every 3 days, a new Jackpot and a random new winner!</li>
               <li>Buy Tickets with BULLRUN, no LIMITS!</li>
               <li>1 ticket gives 1 entry, unlimited entries.</li>
-              <li>Be the luckiest winner and get the daily JACKPOT!</li>
+              <li>Be the luckiest winner and get the JACKPOT!</li>
               <li>Winner receives the JACKPOT automatically, no claiming.</li>
               <li>
-                At the end of the day, a 5% fee is kept to feed the bulls.
+                At the end of the lottery, a 5% fee is kept to feed the bulls.
               </li>
             </ul>
           </div>

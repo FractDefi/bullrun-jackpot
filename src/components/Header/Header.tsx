@@ -26,17 +26,18 @@ export default function Header() {
       className="w-full relative z-10 px-4 md:px-7 flex flex-col md:flex-row justify-center md:justify-between items-center gap-5 md:gap-0 py-2"
     >
       <Link href="/" className="h-full flex gap-4 items-center">
-        <Image src={logo} alt="logo" height={100} className="animate-wiggle" />
+        {/* <Image src={logo} alt="logo" height={100} className="animate-wiggle" /> */}
+        <Image src={logo} alt="logo" height={100} />
         <div className="flex gap-5">
           <div className="flex flex-col text-zinc-100 text-lg">
             {nativeBalance && (
               <span>
                 {Number(nativeBalance.formatted).toFixed(3)}{" "}
                 {nativeBalance.symbol}
-                {web2Context && web2Context.ogrePrice && (
+                {web2Context && web2Context.bullrunPrice && (
                   <div>
                     {formatNumberToCurrency(
-                      Number(web2Context.ogrePrice) *
+                      Number(web2Context.bullrunPrice) *
                         Number(nativeBalance.formatted)
                     )}
                   </div>
