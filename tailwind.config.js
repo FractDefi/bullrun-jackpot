@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ogre: "#B78624",
-        ogre2: '#998901'
+        bullrun: "#B78624",
+        bullrun2: '#998901',
+        bullrunLightgray: 'lightgray'
       },
       keyframes: {
         wiggle: {
