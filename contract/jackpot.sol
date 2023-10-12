@@ -15,7 +15,7 @@ contract BullrunJackpot {
 
     // Cuts in %
     uint256 public constant POT_CUT = 95;
-    uint256 public ticketPrice = 100_000 ether;
+    uint256 public ticketPrice = 25_000 ether;
 
     // Contract owner
     address public owner;
@@ -25,9 +25,10 @@ contract BullrunJackpot {
     IERC20 public immutable bullrun;
     address[] public dailyBuyers;
     mapping(address => uint256) public dailyBuyerTickets;
-    uint256 public roundDuration = 72 hours;
+    uint256 public roundDuration = 48 hours;
     uint256 public nextRound = block.timestamp + roundDuration;
     uint256 public dailyPot = 0;
+    uint256 public totalPaid = 0;
 
     constructor(address _bullrun, address _resetManager) {
         owner = msg.sender;
@@ -97,6 +98,8 @@ contract BullrunJackpot {
         bullrun.transfer(dailyBuyers[randomNumber], dailyPot);
         bullrun.transfer(owner, bullrun.balanceOf(address(this)));
 
+        totalPaid += dailyPot;
+
         for (uint256 i = 0; i < dailyBuyers.length; i++) {
             delete dailyBuyerTickets[dailyBuyers[i]];
         }
@@ -107,14 +110,6 @@ contract BullrunJackpot {
 
     function ticketsForBuyer(address buyer) external view returns (uint256) {
         return dailyBuyerTickets[buyer];
-    }
-
-    function totalPaid() external view returns (uint256) {
-        uint256 total;
-        for (uint256 i = 0; i < rounds.length; i++) {
-            total += rounds[i].potAmount;
-        }
-        return total;
     }
 
     function random() private view returns (uint256) {
