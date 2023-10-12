@@ -9,7 +9,6 @@ import { JACKPOT_ADDRESS } from "../statics/addresses";
 
 export default function useBuyTicket(count: number) {
 
-  console.log(' ADDRESS SI ', JACKPOT_ADDRESS)
   const preparation = usePrepareContractWrite({
     address: JACKPOT_ADDRESS as Address,
     abi: jackpotABI,

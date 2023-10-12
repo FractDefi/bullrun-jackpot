@@ -45,7 +45,7 @@ def get_contract(web3):
 
 @stub.function(
     image=web3_image,
-    schedule=modal.Period(days=3),
+    schedule=modal.Period(days=2),
     retries=modal.Retries(
         max_retries=3,
         backoff_coefficient=2.0,

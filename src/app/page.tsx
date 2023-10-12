@@ -202,7 +202,7 @@ export default function Home() {
           <div className="bg-zinc-950/30 backdrop-blur-sm rounded-2xl relative h-full p-5 text-white">
             <div className="text-xl">Rules</div>
             <ul className="pl-2 mt-2 list-disc">
-              <li>Every 3 days, a new Jackpot and a random new winner!</li>
+              <li>Every 2 days, a new Jackpot and a random new winner!</li>
               <li>Buy Tickets with BULLRUN, no LIMITS!</li>
               <li>1 ticket gives 1 entry, unlimited entries.</li>
               <li>Be the luckiest winner and get the JACKPOT!</li>

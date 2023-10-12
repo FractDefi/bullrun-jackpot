@@ -8,7 +8,7 @@ export default function useTotalPaid() {
     address: JACKPOT_ADDRESS as Address,
     abi: jackpotABI,
     functionName: "totalPaid",
-    watch: false,
+    watch: true,
   });
 
   return data ? formatEther(data as bigint) : '0';
