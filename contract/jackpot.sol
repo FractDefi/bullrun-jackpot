@@ -23,8 +23,7 @@ contract BullrunJackpot {
     address public resetManager;
 
     IERC20 public immutable bullrun;
-    address public immutable deadWallet =
-        0x000000000000000000000000000000000000dEaD;
+    address constant DEAD = 0x000000000000000000000000000000000000dEaD;
     address[] public dailyBuyers;
     mapping(address => uint256) public dailyBuyerTickets;
     uint256 public roundDuration = 48 hours;
@@ -98,7 +97,7 @@ contract BullrunJackpot {
         );
 
         bullrun.transfer(dailyBuyers[randomNumber], dailyPot);
-        bullrun.transfer(deadWallet, bullrun.balanceOf(address(this)));
+        bullrun.transfer(DEAD, bullrun.balanceOf(address(this)));
 
         totalPaid += dailyPot;
 
