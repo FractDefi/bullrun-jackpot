@@ -61,7 +61,7 @@ export default function Home() {
         {previousRound.ticketCount != 0 && (
           <div className="bg-white p-2 rounded-xl">
             <div className="text-bullrun text-xl w-full text-center ">
-              {`Yesterday, ${previousRound.winner.slice(
+              {`Last lottery, ${previousRound.winner.slice(
                 0,
                 5
               )}...${previousRound.winner.slice(-5)}`}{" "}
