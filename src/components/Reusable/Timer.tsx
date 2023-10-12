@@ -23,11 +23,11 @@ export default function Timer({ toDate }: { toDate: number }) {
   }, [countDown]);
 
   if (countDown < 0) {
-    return <div className="font-bold">Ended</div>;
+    return <div className="font-bold w-[185px]">Ended</div>;
   } else if (days >= 1) {
-    return <div className="font-bold">{`${days}d ${hours}h ${minutes}m ${seconds}s`}</div>;
+    return <div className="font-bold w-[185px]">{`${days}d ${hours}h ${minutes}m ${seconds}s`}</div>;
   } else if (hours >= 1) {
-    return <div className="font-bold">{`${hours}h ${minutes}m ${seconds}s`}</div>;
+    return <div className="font-bold w-[185px]">{`${hours}h ${minutes}m ${seconds}s`}</div>;
   }
-  return <div className="font-bold">{`${minutes}m ${seconds}s`}</div>;
+  return <div className="font-bold w-[185px]">{`${minutes}m ${seconds}s`}</div>;
 }

@@ -26,15 +26,15 @@ export default function NumberInput({
         onChange={(e) => setValueCallback(e.target.value)}
         type="number"
         placeholder={`How many tickets?`}
-        className="pt-1 w-full outline-none bg-transparent"
+        className="pt-1 outline-none bg-transparent w-[200px]"
       />
-      <div className="pt-1">
+      <div className="pt-1 w-[140px] text-right">
         {formatNumberToCurrency(
           Number(ticketPrice) * Number(value) * Number(unitPrice)
         )}
       </div>
       <div className="pt-1 flex gap-2 hover:bg-ogre/10 border-l-[1px] border-ogre/20 justify-center items-center relative whitespace-nowrap px-4 h-full transition-colors duration-500">
-        {balance !== "0" ? Number(balance).toFixed(4) : 0}
+        {balance !== "0" ? Number(balance).toFixed(0) : 0}
 
         <Image src={tokenImgSrc} height={30} className="pb-1" alt="eth" />
       </div>

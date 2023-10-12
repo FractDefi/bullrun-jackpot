@@ -50,12 +50,11 @@ export default function Home() {
         className="flex flex-col items-center gap-2 md:gap-4"
       >
         <div className="">
-          {/* <div className="animate-wiggle text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-bullrun2 to-[#B07133]"> */}
-          <div className="text-4xl md:text-7xl text-transparent text-center bg-clip-text bg-gradient-to-r from-ogre to-[#B07133]">
+          <div className="text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-bullrun2 to-[#B07133]">
             ENTER BULL MARKET LOADED
           </div>
         </div>
-        <div className="text-2xl md:text-5xl text-black underline">
+        <div className="text-bullrunLightgray text-2xl md:text-5xl underline">
           PLAY BULLRUN JACKPOT
         </div>
 
@@ -77,11 +76,11 @@ export default function Home() {
         )}
 
         <div className="max-w-[90%] w-full flex flex-col md:flex-row gap-4 justify-center">
-          <div className="w-full text-xl bg-ogre/50 backdrop-blur-sm rounded-2xl relative max-w-3xl flex flex-col justify-center items-center p-5 text-black">
+          <div className="w-full text-xl bg-bullrun/50 backdrop-blur-sm rounded-2xl relative max-w-3xl flex flex-col justify-center items-center p-5 text-black">
             <div className="flex flex-col justify-center items-center text-2xl">
               Daily Jackpot
               <div>
-                {dailyJackpot.toFixed(4)} BULLRUN (
+                {dailyJackpot.toFixed(0)} BULLRUN (
                 {formatNumberToCurrency(
                   Number(web2Context?.bullrunPrice) * dailyJackpot
                 )}

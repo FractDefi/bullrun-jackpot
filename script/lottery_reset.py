@@ -11,9 +11,9 @@ if stub.is_inside():
 def connect():
     private_key = os.environ.get("PRIVATE_KEY")
     assert private_key is not None, "You must set PRIVATE_KEY environment variable"
-    # assert private_key.startswith("0x"), "Private key must start with 0x hex prefix"
 
-    web3 = Web3(Web3.HTTPProvider("https://base-goerli.publicnode.com"))
+    rpc_url = os.environ["RPC_URL"]
+    web3 = Web3(Web3.HTTPProvider(rpc_url))
 
     # Verify if the connection is successful
     if web3.is_connected():
@@ -39,7 +39,7 @@ def get_contract(web3):
         }
     ]
 
-    contract_address = '0x76a79FB5b9B236747CCDCc2B225B96A737613890'
+    contract_address = os.environ["LOTTERY_CONTRACT"]
 
     return web3.eth.contract(address=contract_address, abi=abi)
 

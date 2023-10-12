@@ -32,7 +32,7 @@ export default function Header() {
           <div className="flex flex-col text-zinc-100 text-lg">
             {nativeBalance && (
               <span>
-                {Number(nativeBalance.formatted).toFixed(3)}{" "}
+                {Number(nativeBalance.formatted).toFixed(0)}{" "}
                 {nativeBalance.symbol}
                 {web2Context && web2Context.bullrunPrice && (
                   <div>
