@@ -208,7 +208,7 @@ export default function Home() {
               <li>Be the luckiest winner and get the JACKPOT!</li>
               <li>Winner receives the JACKPOT automatically, no claiming.</li>
               <li>
-                At the end of the lottery, a 5% fee is kept to feed the bulls.
+                At the end of the lottery, a 5% fee is taken and burned!
               </li>
             </ul>
           </div>
