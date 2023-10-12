@@ -23,9 +23,9 @@ export default function Header() {
       }}
       animate={{ translateY: 0 }}
       transition={{ duration: 1, ease: [0.42, 0, 0.58, 1] }}
-      className="w-full relative z-10 px-4 md:px-7 flex flex-col md:flex-row justify-center md:justify-between items-center gap-5 md:gap-0 py-2"
+      className="w-full relative z-10 px-4 md:px-7 flex justify-between items-center gap-5 md:gap-0 py-2"
     >
-      <Link href="/" className="h-full flex gap-4 items-center">
+      <Link href="/" className="flex gap-4 items-center">
         {/* <Image src={logo} alt="logo" height={100} className="animate-wiggle" /> */}
         <Image src={logo} alt="logo" height={100} />
         <div className="flex gap-5">
@@ -48,9 +48,7 @@ export default function Header() {
         </div>
       </Link>
 
-      <div className="flex justify-end">
-          <WalletConnectButton />
-      </div>
+      <WalletConnectButton />
     </motion.div>
   );
 }

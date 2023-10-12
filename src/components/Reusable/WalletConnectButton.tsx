@@ -19,7 +19,7 @@ export default function WalletConnectButton() {
 
         return (
           <div
-            className="w-full h-12"
+            className=""
             {...(!ready && {
               "aria-hidden": true,
             })}

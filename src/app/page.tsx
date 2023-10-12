@@ -51,7 +51,7 @@ export default function Home() {
       >
         <div className="">
           {/* <div className="animate-wiggle text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-bullrun2 to-[#B07133]"> */}
-          <div className="text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-bullrun2 to-[#B07133]">
+          <div className="text-4xl md:text-7xl text-transparent text-center bg-clip-text bg-gradient-to-r from-ogre to-[#B07133]">
             ENTER BULL MARKET LOADED
           </div>
         </div>
@@ -76,8 +76,8 @@ export default function Home() {
           </div>
         )}
 
-        <div className="w-full flex flex-col md:flex-row gap-4 justify-center">
-          <div className="w-full text-xl bg-bullrun/50 backdrop-blur-sm rounded-2xl relative max-w-3xl flex flex-col justify-center items-center p-5 text-black">
+        <div className="max-w-[90%] w-full flex flex-col md:flex-row gap-4 justify-center">
+          <div className="w-full text-xl bg-ogre/50 backdrop-blur-sm rounded-2xl relative max-w-3xl flex flex-col justify-center items-center p-5 text-black">
             <div className="flex flex-col justify-center items-center text-2xl">
               Daily Jackpot
               <div>
@@ -88,8 +88,8 @@ export default function Home() {
                 )
               </div>
             </div>
-            <div className="mt-5 z-10 w-full flex justify-center gap-10">
-              <div className="flex flex-col justify-center items-center">
+            <div className="mt-5 z-10 w-full flex flex-col items-center gap-5">
+              <div className="w-full flex justify-between items-center">
                 Ticket Price
                 <div>
                   {ticketPrice} BULLRUN (
@@ -100,17 +100,17 @@ export default function Home() {
                   )
                 </div>
               </div>
-              <div className="flex flex-col justify-center items-center">
+              <div className="w-full flex justify-between items-center">
                 Total Paid Ever
                 <div>{totalPaid} BULLRUN</div>
               </div>
-              <div className="flex flex-col justify-center items-center">
+              <div className="w-full flex justify-between items-center">
                 Your Tickets today
                 <div>{userTickets}</div>
               </div>
             </div>
 
-            <div className="mt-5 z-10 w-full flex justify-center items-center gap-2">
+            <div className="mt-5 z-10 w-full flex flex-col md:flex-row justify-center items-center gap-2">
               Next Random Winner In{" "}
               <div>
                 <Timer toDate={nextRound} />
